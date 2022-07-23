@@ -1,4 +1,9 @@
-import { extendTheme, ThemeConfig } from "@chakra-ui/react";
+import {
+  ComponentStyleConfig,
+  extendTheme,
+  ThemeConfig,
+  useColorModeValue,
+} from "@chakra-ui/react";
 
 const extendedThemeConfig: ThemeConfig = {
   useSystemColorMode: true,
@@ -6,8 +11,21 @@ const extendedThemeConfig: ThemeConfig = {
 };
 
 const useExtendedTheme = () => {
+  const Input: ComponentStyleConfig = {
+    defaultProps: {
+      fontSize: "2xl",
+    },
+  };
+
   const extendedTheme = extendTheme({
     config: extendedThemeConfig,
+    fonts: {
+      heading: `'Poppins', sans-serif`,
+      body: `'Poppins', sans-serif`,
+    },
+    components: {
+      Input,
+    },
   });
 
   return extendedTheme;
