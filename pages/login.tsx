@@ -6,6 +6,7 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { GetStaticProps, NextPage } from "next/types";
 import React, { useEffect, useState } from "react";
@@ -94,7 +95,7 @@ const Login: NextPage<{ userProtected: boolean }> = (props) => {
           >
             <FcGoogle className="text-2xl" />
             <span className="mx-2" />
-            {"Login with Google"}
+            {"Continue with Google"}
           </Text>
         </Button>
         <span className="my-3" />
@@ -112,9 +113,17 @@ const Login: NextPage<{ userProtected: boolean }> = (props) => {
           >
             <FaGithub className="text-2xl" />
             <span className="mx-2" />
-            {"Login with GitHub"}
+            {"Continue with GitHub"}
           </Text>
         </Button>
+        <span className="my-4" />
+        <Text>
+          New user?
+          <span className="mx-1" />
+          <Link href="/register">
+            <Button variant="link">Register</Button>
+          </Link>
+        </Text>
       </Box>
     </AuthLayout>
   );
