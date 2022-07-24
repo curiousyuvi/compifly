@@ -4,15 +4,22 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { auth } from "../firebase";
+import useDB from "../hooks/useDB";
 
-const Home: NextPage<{ userProtected: boolean }> = (props) => {
+const Home: NextPage = () => {
   const router = useRouter();
+  const { userDocExists } = useDB();
 
   useEffect(() => {
-    if (props.userProtected && !auth.currentUser) {
-      router.replace("/login");
-    }
-    if (auth.currentUser) console.log("uid: ", auth.currentUser?.uid);
+    const checkUser = async () => {
+      if (auth.currentUser?.uid) {
+        if (!(await userDocExists(auth.currentUser.uid)))
+          router.replace("/create_user");
+      } else router.replace("/login");
+    };
+
+    checkUser();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auth.currentUser]);
 
@@ -28,14 +35,6 @@ const Home: NextPage<{ userProtected: boolean }> = (props) => {
       {auth.currentUser?.photoURL}
     </div>
   );
-};
-
-export const getStaticProps: GetStaticProps = async (context) => {
-  return {
-    props: {
-      userProtected: true,
-    },
-  };
 };
 
 export default Home;

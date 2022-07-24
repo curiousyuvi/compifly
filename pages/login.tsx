@@ -10,6 +10,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { validateCallback } from "@firebase/util";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { GetStaticProps, NextPage } from "next/types";
@@ -20,12 +21,12 @@ import AuthLayout from "../components/AuthLayout";
 import { auth } from "../firebase";
 import useAuth from "../hooks/useAuth";
 
-const Login: NextPage<{ userProtected: boolean }> = (props) => {
+const Login: NextPage = () => {
   const router = useRouter();
   const { signIn, authenticateWithGithub, authenticateWithGoogle } = useAuth();
 
   useEffect(() => {
-    if (props.userProtected && auth.currentUser) {
+    if (auth.currentUser) {
       router.replace("/");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -94,7 +95,15 @@ const Login: NextPage<{ userProtected: boolean }> = (props) => {
   return (
     <AuthLayout>
       <Box className="w-full h-full p-4 flex flex-col justify-center items-center">
-        <p>Welcome to Compifly</p>
+        <Image
+          src="/logo.svg"
+          alt="Compifly"
+          height={75}
+          width={75}
+          className="rounded-full"
+        />
+        <span className="my-1" />
+        <p>Welcome back to Compifly</p>
         <span className="my-2" />
         <Heading>Login</Heading>
         <FormControl isInvalid={isFormError}>
@@ -207,14 +216,6 @@ const Login: NextPage<{ userProtected: boolean }> = (props) => {
       </Box>
     </AuthLayout>
   );
-};
-
-export const getStaticProps: GetStaticProps = async (context) => {
-  return {
-    props: {
-      userProtected: true,
-    },
-  };
 };
 
 export default Login;
