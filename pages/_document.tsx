@@ -5,9 +5,9 @@ import { extendedThemeConfig } from "../hooks/useExtendedTheme";
 export default class Document extends NextDocument {
   render() {
     return (
-      <Html lang="en">
+      <Html lang="en" className="h-full w-full m-0 p-0">
         <Head />
-        <body>
+        <body className="h-full min-h-screen w-full m-0 p-0 box-border">
           <ColorModeScript
             initialColorMode={extendedThemeConfig.initialColorMode}
           />
