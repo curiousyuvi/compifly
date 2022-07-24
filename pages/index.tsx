@@ -12,6 +12,7 @@ const Home: NextPage<{ userProtected: boolean }> = (props) => {
     if (props.userProtected && !auth.currentUser) {
       router.replace("/login");
     }
+    if (auth.currentUser) console.log("uid: ", auth.currentUser?.uid);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auth.currentUser]);
 
@@ -23,6 +24,8 @@ const Home: NextPage<{ userProtected: boolean }> = (props) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Heading className="">Hello</Heading>
+      {auth.currentUser?.displayName}
+      {auth.currentUser?.photoURL}
     </div>
   );
 };

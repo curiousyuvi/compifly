@@ -21,9 +21,13 @@ const AuthLayout = ({ children }: { children: ReactNode }) => {
           />
         </span>
         <div className="flex items-center">
-          <div className={"bg-black/80 p-2 rounded-full h-24 w-24"}>
-            <Image src={"/logo.svg"} alt="Compifly" width={120} height={120} />
-          </div>
+          <Image
+            src={"/logo.svg"}
+            alt="Compifly"
+            width={120}
+            height={120}
+            className="rounded-full"
+          />
           <span className="mx-3" />
           <Heading fontSize="6xl">COMPIFLY</Heading>
         </div>
