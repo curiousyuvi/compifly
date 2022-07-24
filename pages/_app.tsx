@@ -1,10 +1,13 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { ChakraProvider } from "@chakra-ui/react";
+import useExtendedTheme from "../hooks/useExtendedTheme";
+import "@fontsource/poppins";
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const extendedTheme = useExtendedTheme();
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={extendedTheme}>
       <Component {...pageProps} />
     </ChakraProvider>
   );
