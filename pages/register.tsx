@@ -10,6 +10,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { validateCallback } from "@firebase/util";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { GetStaticProps, NextPage } from "next/types";
@@ -20,12 +21,12 @@ import AuthLayout from "../components/AuthLayout";
 import { auth } from "../firebase";
 import useAuth from "../hooks/useAuth";
 
-const Register: NextPage<{ userProtected: boolean }> = (props) => {
+const Register: NextPage = () => {
   const router = useRouter();
   const { signUp, authenticateWithGithub, authenticateWithGoogle } = useAuth();
 
   useEffect(() => {
-    if (props.userProtected && auth.currentUser) {
+    if (auth.currentUser) {
       router.replace("/");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -113,6 +114,14 @@ const Register: NextPage<{ userProtected: boolean }> = (props) => {
   return (
     <AuthLayout>
       <Box className="w-full h-full p-4 flex flex-col justify-center items-center">
+        <Image
+          src="/logo.svg"
+          alt="Compifly"
+          height={75}
+          width={75}
+          className="rounded-full"
+        />
+        <span className="my-1" />
         <p>Welcome to Compifly</p>
         <span className="my-2" />
         <Heading>Register</Heading>
@@ -227,23 +236,15 @@ const Register: NextPage<{ userProtected: boolean }> = (props) => {
         </Button>
         <span className="my-4" />
         <Text>
-          New user?
+          Already have an account?
           <span className="ml-1" />
-          <Link href="/register">
-            <Button variant="link">Register</Button>
+          <Link href="/login">
+            <Button variant="link">Login</Button>
           </Link>
         </Text>
       </Box>
     </AuthLayout>
   );
-};
-
-export const getStaticProps: GetStaticProps = async (context) => {
-  return {
-    props: {
-      userProtected: true,
-    },
-  };
 };
 
 export default Register;
