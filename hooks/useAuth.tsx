@@ -9,6 +9,7 @@ import { FirebaseError } from "firebase/app";
 import {
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
+  updateProfile,
 } from "firebase/auth";
 import { useRouter } from "next/router";
 import { ReactNode } from "react";
@@ -101,12 +102,39 @@ const useAuth = () => {
     router.replace("/login");
   };
 
+  const updateUserProfile = async ({
+    name,
+    photo_url,
+  }: {
+    name: string;
+    photo_url: string;
+  }) => {
+    try {
+      if (auth.currentUser) {
+        await updateProfile(auth.currentUser, {
+          displayName: name,
+          photoURL: photo_url,
+        });
+      }
+    } catch (error: any | FirebaseError) {
+      toast({
+        title: "Failed to update profile",
+        description: error.message,
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+        variant: "solid",
+      });
+    }
+  };
+
   return {
     authenticateWithGithub,
     authenticateWithGoogle,
     signIn,
     signUp,
     sendPasswordChangeEmail,
+    updateUserProfile,
   };
 };
 
