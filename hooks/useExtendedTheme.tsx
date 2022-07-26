@@ -5,13 +5,15 @@ const extendedThemeConfig: ThemeConfig = {
   initialColorMode: "dark",
 };
 
+const fonts = {
+  heading: `'Poppins', sans-serif`,
+  body: `'Poppins', sans-serif`,
+};
+
 const useExtendedTheme = () => {
   const extendedTheme = extendTheme({
     config: extendedThemeConfig,
-    fonts: {
-      heading: `'Poppins', sans-serif`,
-      body: `'Poppins', sans-serif`,
-    },
+    fonts,
   });
 
   return extendedTheme;

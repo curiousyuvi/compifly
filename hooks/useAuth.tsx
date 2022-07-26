@@ -128,6 +128,11 @@ const useAuth = () => {
     }
   };
 
+  const logout = () => {
+    auth.signOut();
+    router.replace("/login");
+  };
+
   return {
     authenticateWithGithub,
     authenticateWithGoogle,
@@ -135,6 +140,7 @@ const useAuth = () => {
     signUp,
     sendPasswordChangeEmail,
     updateUserProfile,
+    logout,
   };
 };
 

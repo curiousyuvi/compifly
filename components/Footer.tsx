@@ -4,7 +4,7 @@ import { FaGithub } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-green-500 flex flex-col justify-center items-center p-4">
+    <footer className="hidden sm:flex w-full bg-green-500 flex-col justify-center items-center p-4">
       <a href="https://github.com/curiousyuvi/compifly">
         <FaGithub className="text-3xl text-white" />
       </a>

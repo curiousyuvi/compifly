@@ -4,7 +4,7 @@ import React, { ReactNode } from "react";
 
 const AuthLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="w-full h-full min-h-screen flex overflow-y-auto">
+    <div className="w-full h-full min-h-screen flex items-center overflow-y-auto">
       <div className="w-full h-full">{children}</div>
       <div
         className={`hidden lg:flex w-full h-full min-h-screen text-gray-100 ${useColorModeValue(
