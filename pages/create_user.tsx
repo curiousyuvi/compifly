@@ -186,7 +186,9 @@ const CreateUser = () => {
       if (!auth.currentUser) router.replace("/login");
     };
 
-    checkUser();
+    auth.onAuthStateChanged(() => {
+      checkUser();
+    });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auth]);

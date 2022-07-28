@@ -1,8 +1,9 @@
 import { useToast } from "@chakra-ui/react";
 import { doc, getDoc } from "@firebase/firestore";
 import { FirebaseError } from "firebase/app";
-import { setDoc } from "firebase/firestore";
+import { collection, getDocs, setDoc } from "firebase/firestore";
 import { auth, db } from "../firebase";
+import { UserDoc } from "../interfaces/UserDoc";
 
 const useDB = () => {
   const toast = useToast();
@@ -55,7 +56,38 @@ const useDB = () => {
     }
   };
 
-  return { userDocExists, createUserDoc };
+  const getUserDoc = async (uid: string) => {
+    try {
+      const userDocRef = doc(db, "users", uid);
+      const friendColRef = collection(db, "users", uid, "friends");
+
+      const userDocSnapshot = await getDoc(userDocRef);
+      const frinedColSnapshot = await getDocs(friendColRef);
+
+      const userDoc: UserDoc = {
+        username: userDocSnapshot.data()?.username,
+        codechefHandle: userDocSnapshot.data()?.codechefHandle,
+        codeforcesHandle: userDocSnapshot.data()?.codeforcesHandle,
+        friends: frinedColSnapshot.docs.map((doc) => {
+          return doc.id;
+        }),
+      };
+
+      return userDoc;
+    } catch (error: any | FirebaseError) {
+      toast({
+        title: "Database Error",
+        description: error.message,
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+        variant: "solid",
+      });
+      return null;
+    }
+  };
+
+  return { userDocExists, createUserDoc, getUserDoc };
 };
 
 export default useDB;
