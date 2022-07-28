@@ -53,7 +53,7 @@ const Codechef = ({ handle }: { handle: string }) => {
           })}
         </span>
 
-        <Text className="flex items-center text-sm sm:text-xs">
+        <Text className="flex items-center text-xs sm:text-sm">
           {rating}
           <span className="mx-1" />
           <span>PTS</span>
@@ -125,7 +125,7 @@ const Codeforces = ({ handle }: { handle: string }) => {
           {title}
         </Text>
 
-        <Text className="flex items-center text-sm sm:text-xs">
+        <Text className="flex items-center text-xs sm:text-sm">
           {rating}
           <span className="mx-1" />
           <span>PTS</span>
