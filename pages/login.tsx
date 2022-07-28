@@ -26,11 +26,13 @@ const Login: NextPage = () => {
   const { signIn, authenticateWithGithub, authenticateWithGoogle } = useAuth();
 
   useEffect(() => {
-    if (auth.currentUser) {
-      router.replace("/");
-    }
+    auth.onAuthStateChanged(() => {
+      if (auth.currentUser) {
+        router.replace("/");
+      }
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [auth.currentUser]);
+  }, [auth]);
   const [loading, setLoading] = useState<boolean>(false);
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [formError, setFormError] = useState({

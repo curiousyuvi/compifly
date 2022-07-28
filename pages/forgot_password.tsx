@@ -16,16 +16,18 @@ import AuthLayout from "../components/AuthLayout";
 import { auth } from "../firebase";
 import useAuth from "../hooks/useAuth";
 
-const ForgotPassword: NextPage<{ userProtected: boolean }> = (props) => {
+const ForgotPassword: NextPage = () => {
   const router = useRouter();
   const { sendPasswordChangeEmail } = useAuth();
 
   useEffect(() => {
-    if (props.userProtected && auth.currentUser) {
-      router.replace("/");
-    }
+    auth.onAuthStateChanged(() => {
+      if (auth.currentUser) {
+        router.replace("/");
+      }
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [auth.currentUser]);
+  }, [auth]);
   const [loading, setLoading] = useState<boolean>(false);
   const [formData, setFormData] = useState({ email: "" });
   const [formError, setFormError] = useState({
@@ -115,14 +117,6 @@ const ForgotPassword: NextPage<{ userProtected: boolean }> = (props) => {
       </Box>
     </AuthLayout>
   );
-};
-
-export const getStaticProps: GetStaticProps = async (context) => {
-  return {
-    props: {
-      userProtected: true,
-    },
-  };
 };
 
 export default ForgotPassword;
