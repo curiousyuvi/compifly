@@ -8,7 +8,9 @@ const Layout = ({ children }: { children: ReactNode }) => {
     <>
       <Header />
       <div className="w-[calc(100%)] h-screen pt-24 flex justify-center">
-        <div className="w-full h-full max-w-6xl">{children}</div>
+        <div className="w-full h-full max-w-6xl flex justify-center items-center">
+          {children}
+        </div>
       </div>
       <MobileNavbar />
       <Footer />

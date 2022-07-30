@@ -11,6 +11,7 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { auth } from "../firebase";
 import useAuth from "../hooks/useAuth";
@@ -25,7 +26,12 @@ const MobileNavbar = () => {
     logout();
   };
   return (
-    <div className="sm:hidden fixed bg-white/10 backdrop-blur border border-x-0 border-b-0 border-green-500/20 bottom-0 w-full px-2 py-3 flex items-center justify-evenly">
+    <div
+      className={`sm:hidden fixed ${useColorModeValue(
+        "bg-green-700/10",
+        "bg-white/10"
+      )} backdrop-blur border border-x-0 border-b-0 border-green-500/20 bottom-0 w-full px-2 py-3 flex items-center justify-evenly`}
+    >
       <MobileNavlink
         href="/rankings"
         idleIcon={<AiOutlineTrophy className="text-3xl" />}

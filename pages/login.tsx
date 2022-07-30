@@ -162,13 +162,13 @@ const Login: NextPage = () => {
           height="14"
           variant="outline"
           borderColor={useColorModeValue("red.400", "red.600")}
-          color={useColorModeValue("red.400", "red.600")}
           onClick={handleGoogleAuthClick}
         >
           <Text
             fontWeight="extrabold"
             fontSize="xl"
             className="flex items-center"
+            color={useColorModeValue("red.400", "red.600")}
           >
             <FcGoogle className="text-2xl" />
             <span className="mx-2" />

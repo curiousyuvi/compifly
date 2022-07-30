@@ -1,4 +1,4 @@
-import { Button } from "@chakra-ui/react";
+import { Button, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import React, { ReactNode } from "react";
 
@@ -12,7 +12,7 @@ const DesktopNavlink = ({
   return (
     <Link href={href}>
       <Button variant="link" textColor="ButtonText">
-        {children}
+        <Text>{children}</Text>
       </Button>
     </Link>
   );
