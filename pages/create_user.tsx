@@ -166,32 +166,32 @@ const CreateUser = () => {
           name,
           photo_url: photoURLFromStorage || photoURL,
         });
+        await createUserDoc(auth.currentUser?.uid as string, {
+          name,
+          photoURL: photoURLFromStorage || photoURL,
+          username,
+          codechefHandle,
+          codeforcesHandle,
+          friends: [],
+        });
       } else {
         await updateUserProfile({ name, photo_url: photoURL });
+        await createUserDoc(auth.currentUser?.uid as string, {
+          name,
+          photoURL,
+          username,
+          codechefHandle,
+          codeforcesHandle,
+          friends: [],
+        });
       }
-      await createUserDoc(auth.currentUser?.uid as string, {
-        username,
-        codechefHandle,
-        codeforcesHandle,
-      });
+
       router.replace("/");
     } else {
       setIsFormError(true);
     }
     setLoading(false);
   };
-
-  useEffect(() => {
-    const checkUser = async () => {
-      if (!auth.currentUser) router.replace("/login");
-    };
-
-    auth.onAuthStateChanged(() => {
-      checkUser();
-    });
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [auth]);
 
   useEffect(() => {
     const loadProfileData = () => {

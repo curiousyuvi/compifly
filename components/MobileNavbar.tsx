@@ -15,9 +15,11 @@ import {
 import { auth } from "../firebase";
 import useAuth from "../hooks/useAuth";
 import { FaOptinMonster } from "react-icons/fa";
+import useUser from "../hooks/useUser";
 
 const MobileNavbar = () => {
   const { logout } = useAuth();
+  const userDoc = useUser();
 
   const handleLogoutClick = () => {
     logout();
@@ -35,7 +37,7 @@ const MobileNavbar = () => {
         activeIcon={<IoPeopleSharp className="text-3xl text-green-500" />}
       />
       <MobileNavlink
-        href="/"
+        href={`/${userDoc?.username || ""}`}
         idleIcon={
           <Avatar
             src={auth.currentUser?.photoURL || ""}

@@ -4,6 +4,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import useExtendedTheme from "../hooks/useExtendedTheme";
 import "@fontsource/poppins";
 import Head from "next/head";
+import UserProvider from "../providers/UserProvider";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const extendedTheme = useExtendedTheme();
@@ -16,7 +17,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
       </Head>
       <ChakraProvider theme={extendedTheme}>
-        <Component {...pageProps} />
+        <UserProvider>
+          <Component {...pageProps} />
+        </UserProvider>
       </ChakraProvider>
     </>
   );
