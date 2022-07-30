@@ -24,15 +24,6 @@ import useAuth from "../hooks/useAuth";
 const Login: NextPage = () => {
   const router = useRouter();
   const { signIn, authenticateWithGithub, authenticateWithGoogle } = useAuth();
-
-  useEffect(() => {
-    auth.onAuthStateChanged(() => {
-      if (auth.currentUser) {
-        router.replace("/");
-      }
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [auth]);
   const [loading, setLoading] = useState<boolean>(false);
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [formError, setFormError] = useState({

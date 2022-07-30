@@ -19,15 +19,6 @@ import useAuth from "../hooks/useAuth";
 const ForgotPassword: NextPage = () => {
   const router = useRouter();
   const { sendPasswordChangeEmail } = useAuth();
-
-  useEffect(() => {
-    auth.onAuthStateChanged(() => {
-      if (auth.currentUser) {
-        router.replace("/");
-      }
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [auth]);
   const [loading, setLoading] = useState<boolean>(false);
   const [formData, setFormData] = useState({ email: "" });
   const [formError, setFormError] = useState({
