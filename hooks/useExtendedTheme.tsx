@@ -1,4 +1,20 @@
-import { extendTheme, ThemeConfig } from "@chakra-ui/react";
+import {
+  extendTheme,
+  ThemeConfig,
+  ComponentStyleConfig,
+} from "@chakra-ui/react";
+
+const Text: ComponentStyleConfig = {
+  baseStyle: (props) => ({
+    color: props.colorMode === "light" ? "gray.700" : "white",
+  }),
+};
+
+const Heading: ComponentStyleConfig = {
+  baseStyle: (props) => ({
+    color: props.colorMode === "light" ? "gray.700" : "white",
+  }),
+};
 
 const extendedThemeConfig: ThemeConfig = {
   useSystemColorMode: true,
@@ -14,6 +30,7 @@ const useExtendedTheme = () => {
   const extendedTheme = extendTheme({
     config: extendedThemeConfig,
     fonts,
+    components: { Text, Heading },
   });
 
   return extendedTheme;

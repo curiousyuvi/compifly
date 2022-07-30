@@ -31,10 +31,10 @@ const Codechef = ({ handle, rating }: { handle: string; rating: number }) => {
 
   return (
     <a
-      href={`https://codeforces.com/profile/${handle}`}
+      href={`https://www.codechef.com/users/${handle}`}
       className="cursor-pointer"
     >
-      <div className="w-[6rem] h-[7.5rem] sm:w-[9rem] sm:h-[11.25rem] relative">
+      <div className="w-[6rem] h-[7.5rem] sm:w-[9rem] sm:h-[11.25rem] relative text-white">
         <div className="w-full h-full absolute drop-shadow-2xl">
           <Image src="/codechef-badge.png" alt="codechef-badge" layout="fill" />
         </div>
@@ -45,7 +45,7 @@ const Codechef = ({ handle, rating }: { handle: string; rating: number }) => {
             })}
           </span>
 
-          <Text className="flex items-center text-xs sm:text-sm">
+          <Text className="flex items-center text-xs sm:text-sm" color="white">
             {rating}
             <span className="mx-1" />
             <span>PTS</span>
@@ -89,10 +89,10 @@ const Codeforces = ({ handle, rating }: { handle: string; rating: number }) => {
   if (hidden) return <></>;
   return (
     <a
-      href={`https://www.codechef.com/users/${handle}`}
+      href={`https://codeforces.com/profile/${handle}`}
       className="cursor-pointer"
     >
-      <div className="w-[6rem] h-[7.5rem] sm:w-[9rem] sm:h-[11.25rem] relative">
+      <div className="w-[6rem] h-[7.5rem] sm:w-[9rem] sm:h-[11.25rem] relative text-white">
         <div className="w-full h-full absolute drop-shadow-2xl">
           <Image
             src="/codeforces-badge.png"
@@ -104,11 +104,12 @@ const Codeforces = ({ handle, rating }: { handle: string; rating: number }) => {
           <Text
             fontWeight="bold"
             className="flex items-center text-sm sm:text-lg"
+            color="white"
           >
             {title}
           </Text>
 
-          <Text className="flex items-center text-xs sm:text-sm">
+          <Text className="flex items-center text-xs sm:text-sm" color="white">
             {rating}
             <span className="mx-1" />
             <span>PTS</span>

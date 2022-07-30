@@ -1,9 +1,10 @@
 import router from "next/router";
 import React, { createContext, ReactNode, useEffect, useState } from "react";
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
 import useDB from "../hooks/useDB";
 import { UserDoc } from "../interfaces/UserDoc";
 import LoadingLayout from "../components/LoadingLayout";
+import { collection, doc, onSnapshot } from "firebase/firestore";
 
 const userContext = createContext<UserDoc | null>(null);
 
@@ -18,12 +19,45 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
 
     const checkUser = async () => {
       setAuthLoading(true);
-      if (auth.currentUser?.uid) {
+      if (auth.currentUser && auth.currentUser?.uid) {
+        const userDocRef = doc(db, "users", auth.currentUser.uid);
+        const friendsColRef = collection(
+          db,
+          "users",
+          auth.currentUser.uid,
+          "friends"
+        );
+
+        const unsubscribeUserDocListener = onSnapshot(
+          userDocRef,
+          (snapshot) => {
+            if (snapshot) {
+              loadUserData(auth.currentUser?.uid || "");
+            }
+          }
+        );
+
+        const unsubscribeFriendsColListener = onSnapshot(
+          friendsColRef,
+          (snapshot) => {
+            if (snapshot) {
+              loadUserData(auth.currentUser?.uid || "");
+            }
+          }
+        );
+
         if (!(await userDocExists(auth.currentUser.uid)))
           router.replace("/create_user");
         else {
           await loadUserData(auth.currentUser.uid);
         }
+
+        setAuthLoading(false);
+
+        return () => {
+          unsubscribeFriendsColListener();
+          unsubscribeUserDocListener();
+        };
       } else router.replace("/login");
       setAuthLoading(false);
     };

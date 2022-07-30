@@ -1,7 +1,14 @@
 import { useToast } from "@chakra-ui/react";
 import { doc, getDoc } from "@firebase/firestore";
 import { FirebaseError } from "firebase/app";
-import { collection, getDocs, query, setDoc, where } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  getDocs,
+  query,
+  setDoc,
+  where,
+} from "firebase/firestore";
 import { auth, db } from "../firebase";
 import { UserDoc } from "../interfaces/UserDoc";
 
@@ -94,11 +101,51 @@ const useDB = () => {
     } else return null;
   };
 
+  const addFriend = async (friendUID: string, uid: string) => {
+    try {
+      if (friendUID) {
+        const friendDocRef = doc(db, "users", uid, "friends", friendUID);
+
+        await setDoc(friendDocRef, { uid: friendUID });
+      }
+    } catch (error: any | FirebaseError) {
+      toast({
+        title: "Database Error",
+        description: error.message,
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+        variant: "solid",
+      });
+    }
+  };
+
+  const removeFriend = async (friendUID: string, uid: string) => {
+    try {
+      if (friendUID) {
+        const friendDocRef = doc(db, "users", uid, "friends", friendUID);
+
+        await deleteDoc(friendDocRef);
+      }
+    } catch (error: any | FirebaseError) {
+      toast({
+        title: "Database Error",
+        description: error.message,
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+        variant: "solid",
+      });
+    }
+  };
+
   return {
     userDocExists,
     createUserDoc,
     getUserDoc,
     getDocumentIDFromUsername,
+    addFriend,
+    removeFriend,
   };
 };
 

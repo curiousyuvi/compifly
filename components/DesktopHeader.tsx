@@ -7,6 +7,7 @@ import {
   MenuItem,
   MenuList,
   useColorMode,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import Image from "next/image";
 import React, { useEffect } from "react";
@@ -27,7 +28,12 @@ const DesktopHeader = () => {
   };
 
   return (
-    <div className="hidden sm:flex w-full bg-white/10 fixed top-0 backdrop-blur justify-center p-1 border border-x-0 border-t-0 border-green-400/10">
+    <div
+      className={`hidden sm:flex w-full ${useColorModeValue(
+        "bg-green-700/10",
+        "bg-white/10"
+      )} fixed top-0 backdrop-blur justify-center p-1 border border-x-0 border-t-0 border-green-400/10`}
+    >
       <div className="w-full max-w-6xl p-2 flex justify-between">
         <Link href="/">
           <div className="flex items-center cursor-pointer">
