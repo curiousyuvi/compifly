@@ -169,7 +169,7 @@ const CreateUser = () => {
         await createUserDoc(auth.currentUser?.uid as string, {
           name,
           photoURL: photoURLFromStorage || photoURL,
-          username,
+          username: username.toLowerCase(),
           codechefHandle,
           codeforcesHandle,
           friends: [],
@@ -179,7 +179,7 @@ const CreateUser = () => {
         await createUserDoc(auth.currentUser?.uid as string, {
           name,
           photoURL,
-          username,
+          username: username.toLowerCase(),
           codechefHandle,
           codeforcesHandle,
           friends: [],

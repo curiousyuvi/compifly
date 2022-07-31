@@ -11,18 +11,21 @@ import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import Router, { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import Badges from "../components/Badges";
-import Layout from "../components/Layout";
-import LoadingLayout from "../components/LoadingLayout";
-import { auth } from "../firebase";
-import useDB from "../hooks/useDB";
-import useUser from "../hooks/useUser";
-import { UserDoc } from "../interfaces/UserDoc";
+import Badges from "../../components/Badges";
+import Layout from "../../components/Layout";
+import LoadingLayout from "../../components/LoadingLayout";
+import { auth } from "../../firebase";
+import useDB from "../../hooks/useDB";
+import useUser from "../../hooks/useUser";
+import { UserDoc } from "../../interfaces/UserDoc";
 import {
   getCodechefRating,
   getCodeforcesRating,
-} from "../services/competitiveAPIServices";
-import { getDocumentIDFromUsername, getUserDoc } from "../services/dbServices";
+} from "../../services/competitiveAPIServices";
+import {
+  getDocumentIDFromUsername,
+  getUserDoc,
+} from "../../services/dbServices";
 import { HiOutlineUserAdd, HiOutlineUserRemove } from "react-icons/hi";
 
 export const getStaticPaths = async () => {
@@ -110,7 +113,7 @@ const Profile: NextPage<{
   const handleAddFriend = () => {
     if (auth.currentUser?.uid) {
       setIsMyFriend(true);
-      addFriend(uid, auth.currentUser.uid);
+      addFriend(uid, auth.currentUser.uid, userDoc?.username || "");
     } else {
       router.push("/login");
     }
@@ -118,7 +121,7 @@ const Profile: NextPage<{
   const handleRemoveFriend = () => {
     if (auth.currentUser?.uid) {
       setIsMyFriend(false);
-      removeFriend(uid, auth.currentUser.uid);
+      removeFriend(uid, auth.currentUser.uid, userDoc?.username || "");
     } else {
       router.push("/login");
     }
