@@ -59,7 +59,9 @@ const DesktopHeader = () => {
           <span className="mx-3" />
           <DesktopNavlink href="/friends"> FRIENDS</DesktopNavlink>
           <span className="mx-3" />
-          <DesktopNavlink href="/rankings"> RANKINGS</DesktopNavlink>
+          <DesktopNavlink href={`/${userDoc?.username || ""}/rankings`}>
+            RANKINGS
+          </DesktopNavlink>
           <span className="mx-3" />
           <Menu>
             <MenuButton as={Button} padding="1.5" background="transparent">
