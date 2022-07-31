@@ -33,7 +33,7 @@ const MobileNavbar = () => {
       )} backdrop-blur border border-x-0 border-b-0 border-green-500/20 bottom-0 w-full px-2 py-3 flex items-center justify-evenly`}
     >
       <MobileNavlink
-        href={`/${userDoc?.username || ""}/rankings`}
+        href={`/${userDoc?.username || "nan"}/rankings`}
         idleIcon={<AiOutlineTrophy className="text-3xl" />}
         activeIcon={<AiFillTrophy className="text-3xl text-green-500" />}
       />

@@ -59,7 +59,7 @@ const DesktopHeader = () => {
           <span className="mx-3" />
           <DesktopNavlink href="/friends"> FRIENDS</DesktopNavlink>
           <span className="mx-3" />
-          <DesktopNavlink href={`/${userDoc?.username || ""}/rankings`}>
+          <DesktopNavlink href={`/${userDoc?.username || "nan"}/rankings`}>
             RANKINGS
           </DesktopNavlink>
           <span className="mx-3" />

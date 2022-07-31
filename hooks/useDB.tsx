@@ -1,5 +1,6 @@
 import { useToast } from "@chakra-ui/react";
 import { doc, getDoc } from "@firebase/firestore";
+import axios from "axios";
 import { FirebaseError } from "firebase/app";
 import {
   collection,
@@ -101,12 +102,19 @@ const useDB = () => {
     } else return null;
   };
 
-  const addFriend = async (friendUID: string, uid: string) => {
+  const addFriend = async (
+    friendUID: string,
+    uid: string,
+    username: string
+  ) => {
     try {
       if (friendUID) {
         const friendDocRef = doc(db, "users", uid, "friends", friendUID);
 
         await setDoc(friendDocRef, { uid: friendUID });
+        axios.get("/api/revalidate", {
+          params: { revalidate_path: `/${username}/rankings` },
+        });
       }
     } catch (error: any | FirebaseError) {
       toast({
@@ -120,12 +128,19 @@ const useDB = () => {
     }
   };
 
-  const removeFriend = async (friendUID: string, uid: string) => {
+  const removeFriend = async (
+    friendUID: string,
+    uid: string,
+    username: string
+  ) => {
     try {
       if (friendUID) {
         const friendDocRef = doc(db, "users", uid, "friends", friendUID);
-
         await deleteDoc(friendDocRef);
+
+        axios.get("/api/revalidate", {
+          params: { revalidate_path: `/${username}/rankings` },
+        });
       }
     } catch (error: any | FirebaseError) {
       toast({

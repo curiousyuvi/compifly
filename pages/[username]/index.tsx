@@ -113,7 +113,7 @@ const Profile: NextPage<{
   const handleAddFriend = () => {
     if (auth.currentUser?.uid) {
       setIsMyFriend(true);
-      addFriend(uid, auth.currentUser.uid);
+      addFriend(uid, auth.currentUser.uid, userDoc?.username || "");
     } else {
       router.push("/login");
     }
@@ -121,7 +121,7 @@ const Profile: NextPage<{
   const handleRemoveFriend = () => {
     if (auth.currentUser?.uid) {
       setIsMyFriend(false);
-      removeFriend(uid, auth.currentUser.uid);
+      removeFriend(uid, auth.currentUser.uid, userDoc?.username || "");
     } else {
       router.push("/login");
     }
