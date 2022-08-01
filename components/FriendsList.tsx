@@ -1,7 +1,7 @@
 import { Text } from "@chakra-ui/react";
 import React from "react";
 import useUser from "../hooks/useUser";
-import FriendsListItem from "./FriendsListItem";
+import FriendListItem from "./FriendListItem";
 
 const FriendsList = () => {
   const userDoc = useUser();
@@ -10,7 +10,7 @@ const FriendsList = () => {
   return (
     <>
       {userDoc?.friends?.map((friendUID: string) => {
-        return <FriendsListItem key={friendUID} friendUID={friendUID} />;
+        return <FriendListItem key={friendUID} friendUID={friendUID} />;
       })}
     </>
   );

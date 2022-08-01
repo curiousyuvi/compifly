@@ -2,6 +2,7 @@ import { FirebaseError } from "firebase/app";
 import { doc, collection, getDoc, getDocs, query, where } from "firebase/firestore";
 import { db } from "../firebase";
 import { UserDoc } from "../interfaces/UserDoc";
+import { capitalize } from "./helpers";
 
 const getUserDoc = async (uid: string) => {
     try {
@@ -12,7 +13,7 @@ const getUserDoc = async (uid: string) => {
         const friendColSnapshot = await getDocs(friendColRef);
 
         const userDoc: UserDoc = {
-            name: userDocSnapshot.data()?.name,
+            name: capitalize(userDocSnapshot.data()?.name),
             photoURL: userDocSnapshot.data()?.photoURL,
             username: userDocSnapshot.data()?.username,
             codechefHandle: userDocSnapshot.data()?.codechefHandle,
