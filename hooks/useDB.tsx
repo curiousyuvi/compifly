@@ -8,11 +8,14 @@ import {
   getDocs,
   query,
   setDoc,
+  updateDoc,
   where,
 } from "firebase/firestore";
 import { auth, db } from "../firebase";
 import { UserDoc } from "../interfaces/UserDoc";
 import { UserShortDoc } from "../interfaces/UserShortDoc";
+import { EditUserDoc } from "../interfaces/EditUserDoc";
+
 import { capitalize } from "../services/helpers";
 
 const useDB = () => {
@@ -47,6 +50,37 @@ const useDB = () => {
       const userDocRef = doc(db, "users", uid);
 
       await setDoc(userDocRef, userDoc);
+    } catch (error: any | FirebaseError) {
+      toast({
+        title: "Database Error",
+        description: error.message,
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+        variant: "solid",
+      });
+    }
+  };
+
+  const editUserDoc = async (
+    uid: string,
+    userDoc: EditUserDoc,
+    username: string
+  ) => {
+    try {
+      const userDocRef = doc(db, "users", uid);
+
+      await updateDoc(userDocRef, userDoc);
+      axios.get("/api/revalidate", {
+        params: { revalidate_path: `/${username}` },
+      });
+      toast({
+        title: "User profile updated",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+        variant: "solid",
+      });
     } catch (error: any | FirebaseError) {
       toast({
         title: "Database Error",
@@ -228,6 +262,7 @@ const useDB = () => {
     addFriend,
     removeFriend,
     searchUserDoc,
+    editUserDoc,
   };
 };
 
