@@ -2,29 +2,54 @@ import {
   Avatar,
   Button,
   Heading,
+  Input,
+  InputGroup,
+  InputLeftElement,
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
   useColorMode,
   useColorModeValue,
+  useToast,
 } from "@chakra-ui/react";
 import Image from "next/image";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import useAuth from "../hooks/useAuth";
 import DesktopNavlink from "./DesktopNavlink";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import useUser from "../hooks/useUser";
 import Link from "next/link";
+import { query } from "firebase/firestore";
+import { FaSearch } from "react-icons/fa";
+import router from "next/router";
 
 const DesktopHeader = () => {
   const { colorMode } = useColorMode();
   const logo = "/logo.svg";
   const { logout } = useAuth();
   const userDoc = useUser();
+  const [query, setQuery] = useState<string>("");
+  const toast = useToast();
 
   const handleLogoutClick = () => {
     logout();
+  };
+
+  const handleQueryChange = (event: any) => {
+    setQuery(event.target.value);
+  };
+  const handleFromSubmit = (event: any) => {
+    event.preventDefault();
+    if (query.length >= 3) router.push(`/search/${query.toLowerCase()}`);
+    else
+      toast({
+        title: "Search query is too short",
+        status: "warning",
+        duration: 3000,
+        isClosable: true,
+        variant: "solid",
+      });
   };
 
   return (
@@ -49,6 +74,27 @@ const DesktopHeader = () => {
           </div>
         </Link>
         <div className="flex items-center">
+          <form
+            className="w-[8.6rem] lg:w-[20rem] flex items-center justify-center"
+            onSubmit={handleFromSubmit}
+          >
+            <InputGroup className="w-full flex items-center justify-center">
+              <InputLeftElement pointerEvents="none" height="full">
+                <FaSearch className="text-lg" />
+              </InputLeftElement>
+              <Input
+                id="search"
+                value={query}
+                onChange={handleQueryChange}
+                placeholder="Search a name or handle"
+                height="12"
+                fontSize="md"
+                focusBorderColor={useColorModeValue("green.300", "green.500")}
+                size="md"
+              />
+            </InputGroup>
+            <span className="mx-3" />
+          </form>
           <Link href={`/${userDoc?.username || ""}`}>
             <Avatar
               src={userDoc?.photoURL || ""}

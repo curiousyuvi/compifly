@@ -167,7 +167,7 @@ const CreateUser = () => {
           photo_url: photoURLFromStorage || photoURL,
         });
         await createUserDoc(auth.currentUser?.uid as string, {
-          name,
+          name: name.toLowerCase(),
           photoURL: photoURLFromStorage || photoURL,
           username: username.toLowerCase(),
           codechefHandle,
@@ -177,7 +177,7 @@ const CreateUser = () => {
       } else {
         await updateUserProfile({ name, photo_url: photoURL });
         await createUserDoc(auth.currentUser?.uid as string, {
-          name,
+          name: name.toLowerCase(),
           photoURL,
           username: username.toLowerCase(),
           codechefHandle,

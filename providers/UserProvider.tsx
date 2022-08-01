@@ -10,7 +10,6 @@ const userContext = createContext<UserDoc | null>(null);
 
 const UserProvider = ({ children }: { children: ReactNode }) => {
   const [userDoc, setUserDoc] = useState<UserDoc | null>(null);
-  const [authLoading, setAuthLoading] = useState<boolean>(false);
   const { getUserDoc, userDocExists } = useDB();
   useEffect(() => {
     const loadUserData = async (uid: string) => {
@@ -18,7 +17,6 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
     };
 
     const checkUser = async () => {
-      setAuthLoading(true);
       if (auth.currentUser && auth.currentUser?.uid) {
         const userDocRef = doc(db, "users", auth.currentUser.uid);
         const friendsColRef = collection(
@@ -52,14 +50,11 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
           await loadUserData(auth.currentUser.uid);
         }
 
-        setAuthLoading(false);
-
         return () => {
           unsubscribeFriendsColListener();
           unsubscribeUserDocListener();
         };
       } else router.replace("/login");
-      setAuthLoading(false);
     };
 
     auth.onAuthStateChanged(() => {
@@ -68,8 +63,6 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auth]);
-
-  if (authLoading) return <LoadingLayout />;
 
   return (
     <userContext.Provider value={userDoc}>{children}</userContext.Provider>

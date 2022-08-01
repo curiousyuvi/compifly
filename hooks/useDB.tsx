@@ -12,6 +12,8 @@ import {
 } from "firebase/firestore";
 import { auth, db } from "../firebase";
 import { UserDoc } from "../interfaces/UserDoc";
+import { UserShortDoc } from "../interfaces/UserShortDoc";
+import { capitalize } from "../services/helpers";
 
 const useDB = () => {
   const toast = useToast();
@@ -66,7 +68,7 @@ const useDB = () => {
       const friendColSnapshot = await getDocs(friendColRef);
 
       const userDoc: UserDoc = {
-        name: userDocSnapshot.data()?.name,
+        name: capitalize(userDocSnapshot.data()?.name),
         photoURL: userDocSnapshot.data()?.photoURL,
         username: userDocSnapshot.data()?.username,
         codechefHandle: userDocSnapshot.data()?.codechefHandle,
@@ -154,6 +156,70 @@ const useDB = () => {
     }
   };
 
+  const searchUserDoc: (
+    searchQuery: string
+  ) => Promise<UserShortDoc[]> = async (searchQuery) => {
+    try {
+      const usersColRef = collection(db, "users");
+      const q1 = query(
+        usersColRef,
+        where("name", ">=", searchQuery),
+        where("name", "<=", searchQuery + "\uf8ff")
+      );
+
+      const q2 = query(
+        usersColRef,
+        where("username", ">=", searchQuery),
+        where("username", "<=", searchQuery + "\uf8ff")
+      );
+
+      const querySnapshot1 = await getDocs(q1);
+      const querySnapshot2 = await getDocs(q2);
+
+      if (querySnapshot1.docs.length > 0 || querySnapshot2.docs.length > 0) {
+        const docs = [
+          ...querySnapshot1.docs.map((doc) => {
+            return {
+              name: capitalize(doc.data()?.name),
+              username: doc.data()?.username,
+              photoURL: doc.data()?.photoURL,
+            };
+          }),
+          ...querySnapshot2.docs.map((doc) => {
+            return {
+              name: capitalize(doc.data()?.name),
+              username: doc.data()?.username,
+              photoURL: doc.data()?.photoURL,
+            };
+          }),
+        ];
+
+        const uniqueDocs = docs.filter((value: any, index) => {
+          const _value = JSON.stringify(value);
+          return (
+            index ===
+            docs.findIndex((doc: any) => {
+              return JSON.stringify(doc) === _value;
+            })
+          );
+        });
+
+        return uniqueDocs;
+      } else return [];
+    } catch (error: any | FirebaseError) {
+      toast({
+        title: "Database Error",
+        description: error.message,
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+        variant: "solid",
+      });
+
+      return [];
+    }
+  };
+
   return {
     userDocExists,
     createUserDoc,
@@ -161,6 +227,7 @@ const useDB = () => {
     getDocumentIDFromUsername,
     addFriend,
     removeFriend,
+    searchUserDoc,
   };
 };
 

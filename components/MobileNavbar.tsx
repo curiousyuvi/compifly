@@ -1,7 +1,7 @@
 import React from "react";
 import MobileNavlink from "./MobileNavlink";
 import { AiFillTrophy, AiOutlineTrophy } from "react-icons/ai";
-import { IoPeopleOutline, IoPeopleSharp } from "react-icons/io5";
+import { IoPeopleOutline, IoPeopleSharp, IoSearch } from "react-icons/io5";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import {
   Avatar,
@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { auth } from "../firebase";
 import useAuth from "../hooks/useAuth";
-import { FaOptinMonster } from "react-icons/fa";
+import { FaOptinMonster, FaSearch } from "react-icons/fa";
 import useUser from "../hooks/useUser";
 
 const MobileNavbar = () => {
@@ -59,6 +59,11 @@ const MobileNavbar = () => {
             className="border-4"
           />
         }
+      />
+      <MobileNavlink
+        href="/search"
+        idleIcon={<IoSearch className="text-3xl" />}
+        activeIcon={<IoSearch className="text-3xl text-green-500" />}
       />
       <Menu>
         <MenuButton as={Button} padding="1.5" background="transparent">
