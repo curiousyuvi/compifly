@@ -27,7 +27,7 @@ const MobileNavbar = () => {
   };
   return (
     <div
-      className={`sm:hidden fixed ${useColorModeValue(
+      className={`sm:hidden fixed z-10 ${useColorModeValue(
         "bg-green-700/10",
         "bg-white/10"
       )} backdrop-blur border border-x-0 border-b-0 border-green-500/20 bottom-0 w-full px-2 py-3 flex items-center justify-evenly`}

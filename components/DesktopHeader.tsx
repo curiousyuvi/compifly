@@ -54,7 +54,7 @@ const DesktopHeader = () => {
 
   return (
     <div
-      className={`hidden sm:flex w-full ${useColorModeValue(
+      className={`hidden sm:flex w-full z-10 ${useColorModeValue(
         "bg-green-700/10",
         "bg-white/10"
       )} fixed top-0 backdrop-blur justify-center p-1 border border-x-0 border-t-0 border-green-400/10`}
