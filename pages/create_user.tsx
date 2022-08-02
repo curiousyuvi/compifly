@@ -187,7 +187,7 @@ const CreateUser = () => {
         });
       }
 
-      router.replace("/");
+      router.replace(`/${username.toLowerCase()}`);
     } else {
       setIsFormError(true);
     }
