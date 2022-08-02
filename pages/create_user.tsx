@@ -37,7 +37,7 @@ const CreateUser = () => {
   const [codechefHandle, setCodechefHandle] = useState("");
   const [codeforcesHandle, setCodeforcesHandle] = useState("");
   const { updateUserProfile } = useAuth();
-  const { createUserDoc } = useDB();
+  const { createUserDoc, usernameExists } = useDB();
   const { uploadImageAndGetURL } = useStorage();
   const router = useRouter();
 
@@ -61,7 +61,7 @@ const CreateUser = () => {
     }
   };
 
-  const validateForm = () => {
+  const validateForm = async () => {
     setIsFormError(false);
     setFormError({
       name: "",
@@ -123,6 +123,17 @@ const CreateUser = () => {
       return false;
     }
 
+    const usernameIsUnique = !(await usernameExists(username));
+    if (!usernameIsUnique) {
+      setFormError({
+        username: "Username already exists",
+        name: "",
+        codechefHandle: "",
+        codeforcesHandle: "",
+      });
+      return false;
+    }
+
     if (codechefHandle.trim().includes(" ")) {
       setFormError({
         username: "",
@@ -157,7 +168,7 @@ const CreateUser = () => {
   const handleCreateUserFormSubmit = async (event: any) => {
     event.preventDefault();
     setLoading(true);
-    if (validateForm()) {
+    if (await validateForm()) {
       if (photoFile) {
         const photoURLFromStorage = await uploadImageAndGetURL(
           photoFile,
@@ -186,8 +197,9 @@ const CreateUser = () => {
           friends: [],
         });
       }
-
-      router.replace(`/${username.toLowerCase()}`);
+      setLoading(true);
+      router.replace(`/${username}`);
+      return;
     } else {
       setIsFormError(true);
     }

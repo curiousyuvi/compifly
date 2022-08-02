@@ -138,6 +138,18 @@ const useDB = () => {
     } else return null;
   };
 
+  const usernameExists = async (username: string) => {
+    const usersColRef = collection(db, "users");
+
+    // Create a query against the collection.
+    const q = query(usersColRef, where("username", "==", username));
+
+    const querySnapshot = await getDocs(q);
+    if (querySnapshot.docs.length > 0) {
+      return true;
+    } else return false;
+  };
+
   const addFriend = async (
     friendUID: string,
     uid: string,
@@ -263,6 +275,7 @@ const useDB = () => {
     removeFriend,
     searchUserDoc,
     editUserDoc,
+    usernameExists,
   };
 };
 
