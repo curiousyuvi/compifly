@@ -1,8 +1,26 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Compifly
+![complify-cover](https://user-images.githubusercontent.com/58589519/182483686-bc46ea7a-418e-461d-80d8-7364593ef8f7.jpg)
 
-## Getting Started
+Compifly is an app that allows users to create a profile and showcase their **competitive ratings/titles/stars using badges**, users can see others profile and their **ratings on different platforms**, they can add others as friends and see **rankings among their friends**.
 
-First, run the development server:
+## Tech/Library/Framework/Tools/APIs
+#### Frontend
+- Made with [Next.js](https://nextjs.org/) ⚛️
+- Written in [Typescript](https://www.typescriptlang.org/)
+- Styled with [Tailwindcss](https://tailwindcss.com/), using components from [Chakra UI](https://chakra-ui.com/)
+- [Axios](https://www.npmjs.com/package/axios) as API Request client
+- [Socket.io-client](https://www.npmjs.com/package/socket.io-client) as Web-socket client
+
+#### Backend
+- [Firebase](https://firebase.google.com/) for backend (Auth, Cloud Firestore Database, Storage)
+
+#### REST API
+- [Competitive_Programming_Score_API](https://github.com/Abhijeet-AR/Competitive_Programming_Score_API) to fetch users ratings.
+
+
+## Run the development server
+
+To run the development server:
 
 ```bash
 npm run dev
