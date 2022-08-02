@@ -1,15 +1,14 @@
 # Compifly
 ![complify-cover](https://user-images.githubusercontent.com/58589519/182483686-bc46ea7a-418e-461d-80d8-7364593ef8f7.jpg)
 
-Compifly is an app that allows users to create a profile and showcase their **competitive ratings/titles/stars using badges**, users can see others profile and their **ratings on different platforms**, they can add others as friends and see **rankings among their friends**.
+Compifly is an app that allows users to create a profile and showcase their **competitive ratings / titles / stars using badges**, users can see others profile and their **ratings on different cp websites**, they can add others as friends and see **rankings among their friends**.
 
 ## Tech/Library/Framework/Tools/APIs
 #### Frontend
-- Made with [Next.js](https://nextjs.org/) ⚛️
+- Made with [Next.js](https://nextjs.org/)
 - Written in [Typescript](https://www.typescriptlang.org/)
 - Styled with [Tailwindcss](https://tailwindcss.com/), using components from [Chakra UI](https://chakra-ui.com/)
 - [Axios](https://www.npmjs.com/package/axios) as API Request client
-- [Socket.io-client](https://www.npmjs.com/package/socket.io-client) as Web-socket client
 
 #### Backend
 - [Firebase](https://firebase.google.com/) for backend (Auth, Cloud Firestore Database, Storage)
