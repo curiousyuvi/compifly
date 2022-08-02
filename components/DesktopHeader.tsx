@@ -23,6 +23,9 @@ import Link from "next/link";
 import { query } from "firebase/firestore";
 import { FaSearch } from "react-icons/fa";
 import router from "next/router";
+import { auth } from "../firebase";
+import LoggedInNavbar from "./LoggedInNavbar";
+import NotLoggedInNavbar from "./NotLoggedInNavbar";
 
 const DesktopHeader = () => {
   const { colorMode } = useColorMode();
@@ -73,57 +76,7 @@ const DesktopHeader = () => {
             <Heading size="lg">COMPIFLY</Heading>
           </div>
         </Link>
-        <div className="flex items-center">
-          <form
-            className="w-[8.6rem] lg:w-[20rem] flex items-center justify-center"
-            onSubmit={handleFromSubmit}
-          >
-            <InputGroup className="w-full flex items-center justify-center">
-              <InputLeftElement pointerEvents="none" height="full">
-                <FaSearch className="text-lg opacity-50" />
-              </InputLeftElement>
-              <Input
-                id="search"
-                value={query}
-                onChange={handleQueryChange}
-                className="placeholder:text-white/60"
-                placeholder="Search a name or handle"
-                height="12"
-                fontSize="md"
-                focusBorderColor={useColorModeValue("gray.500", "gray.500")}
-                size="md"
-              />
-            </InputGroup>
-            <span className="mx-3" />
-          </form>
-          <Link href={`/${userDoc?.username || ""}`}>
-            <Avatar
-              src={userDoc?.photoURL || ""}
-              size="md"
-              className="cursor-pointer"
-            />
-          </Link>
-          <span className="mx-3" />
-          <DesktopNavlink href="/friends"> FRIENDS</DesktopNavlink>
-          <span className="mx-3" />
-          <DesktopNavlink href={`/${userDoc?.username || "nan"}/rankings`}>
-            RANKINGS
-          </DesktopNavlink>
-          <span className="mx-3" />
-          <Menu>
-            <MenuButton as={Button} padding="1.5" background="transparent">
-              <BsThreeDotsVertical className="text-xl" />
-            </MenuButton>
-            <MenuList>
-              <MenuItem>
-                <Link href="/edit_profile">Edit Profile</Link>
-              </MenuItem>
-              <MenuItem textColor="red.500" onClick={handleLogoutClick}>
-                Logout
-              </MenuItem>
-            </MenuList>
-          </Menu>
-        </div>
+        {auth.currentUser ? <LoggedInNavbar /> : <NotLoggedInNavbar />}
       </div>
     </div>
   );

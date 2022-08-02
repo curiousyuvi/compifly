@@ -14,6 +14,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { FaImage } from "react-icons/fa";
 import AuthLayout from "../components/AuthLayout";
+import NotLoggedIn from "../components/NotLoggedIn";
 import { auth } from "../firebase";
 import useAuth from "../hooks/useAuth";
 import useDB from "../hooks/useDB";
@@ -207,6 +208,10 @@ const CreateUser = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auth]);
 
+  const borderFocusColor = useColorModeValue("green.300", "green.500");
+
+  if (!auth.currentUser) return <NotLoggedIn />;
+
   return (
     <AuthLayout>
       <div className="w-full min-h-screen h-full flex flex-col justify-center items-center p-4">
@@ -226,7 +231,7 @@ const CreateUser = () => {
               placeholder="John Doe"
               className="w-full max-w-sm"
               fontSize="lg"
-              focusBorderColor={useColorModeValue("green.300", "green.500")}
+              focusBorderColor={borderFocusColor}
             />
             <FormErrorMessage>{formError.name}</FormErrorMessage>
             <span className="my-3" />
@@ -239,7 +244,7 @@ const CreateUser = () => {
               placeholder="johnDoe00"
               className="w-full max-w-sm"
               fontSize="lg"
-              focusBorderColor={useColorModeValue("green.300", "green.500")}
+              focusBorderColor={borderFocusColor}
             />
             <FormErrorMessage>{formError.username}</FormErrorMessage>
             <span className="my-3" />
@@ -282,7 +287,7 @@ const CreateUser = () => {
                 placeholder="codechef_handle"
                 value={codechefHandle}
                 onChange={handleCodechefHandleChange}
-                focusBorderColor={useColorModeValue("green.300", "green.500")}
+                focusBorderColor={borderFocusColor}
               />
             </Box>
             <FormErrorMessage>{formError.codechefHandle}</FormErrorMessage>
@@ -303,7 +308,7 @@ const CreateUser = () => {
                 placeholder="codeforces_handle"
                 value={codeforcesHandle}
                 onChange={handleCodeforcesHandleChange}
-                focusBorderColor={useColorModeValue("green.300", "green.500")}
+                focusBorderColor={borderFocusColor}
               />
             </Box>
             <FormErrorMessage>{formError.codeforcesHandle}</FormErrorMessage>
@@ -311,7 +316,7 @@ const CreateUser = () => {
             <Button
               className="w-full max-w-sm p-2"
               height="14"
-              bgColor={useColorModeValue("green.300", "green.500")}
+              bgColor={borderFocusColor}
               type="submit"
             >
               <Text fontWeight="extrabold" fontSize="xl">

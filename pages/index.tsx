@@ -1,6 +1,5 @@
 import { Button, Text, useColorModeValue } from "@chakra-ui/react";
 import type { NextPage } from "next";
-import Layout from "../components/Layout";
 import "@fontsource/rubik-mono-one";
 import Typical from "react-typical";
 import Image from "next/image";
@@ -9,7 +8,6 @@ import { useEffect, useRef } from "react";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import LandingLayout from "../components/LandingLayout";
-import useUser from "../hooks/useUser";
 import { auth } from "../firebase";
 import Link from "next/link";
 

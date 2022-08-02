@@ -21,6 +21,10 @@ import {
 } from "../../services/dbServices";
 import { UserDocWithRating } from "../../interfaces/UserDocWithRating";
 import RankingList from "../../components/RankingList";
+import { auth } from "../../firebase";
+import NotLoggedIn from "../../components/NotLoggedIn";
+import useUser from "../../hooks/useUser";
+import NotFound from "../../components/NotFound";
 
 export const getStaticPaths = async () => {
   return {
@@ -76,6 +80,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     return {
       props: {
         userDocsWithRatings,
+        username,
       },
       revalidate: 3600,
     };
@@ -84,14 +89,16 @@ export const getStaticProps: GetStaticProps = async (context) => {
   return {
     props: {
       userDocsWithRatings: [],
+      username,
     },
     revalidate: 3600,
   };
 };
 
-const rankings: NextPage<{ userDocsWithRatings: UserDocWithRating[] }> = ({
-  userDocsWithRatings,
-}) => {
+const Rankings: NextPage<{
+  userDocsWithRatings: UserDocWithRating[];
+  username: string;
+}> = ({ userDocsWithRatings, username }) => {
   let UserDocsWithCodechefRating = userDocsWithRatings
     .filter((item) => item.codechefRating)
     .map((item) => {
@@ -113,6 +120,11 @@ const rankings: NextPage<{ userDocsWithRatings: UserDocWithRating[] }> = ({
       };
     })
     .sort((a, b) => b.rating - a.rating);
+
+  const userDoc = useUser();
+  if (!auth.currentUser) return <NotLoggedIn />;
+
+  if (userDoc?.username !== username) return <NotFound />;
   return (
     <Layout>
       <div className="w-full h-full flex flex-col items-center p-4 py-24">
@@ -152,4 +164,4 @@ const rankings: NextPage<{ userDocsWithRatings: UserDocWithRating[] }> = ({
   );
 };
 
-export default rankings;
+export default Rankings;

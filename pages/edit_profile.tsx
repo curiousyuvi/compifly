@@ -15,6 +15,7 @@ import React, { useEffect, useState } from "react";
 import { FaImage } from "react-icons/fa";
 import AuthLayout from "../components/AuthLayout";
 import Layout from "../components/Layout";
+import NotLoggedIn from "../components/NotLoggedIn";
 import { auth } from "../firebase";
 import useAuth from "../hooks/useAuth";
 import useDB from "../hooks/useDB";
@@ -173,6 +174,10 @@ const EditUser = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auth]);
 
+  const borderFocusColor = useColorModeValue("green.300", "green.500");
+
+  if (!auth.currentUser) return <NotLoggedIn />;
+
   return (
     <Layout>
       <div className="w-full h-full flex flex-col justify-center items-center p-4 py-24">
@@ -192,7 +197,7 @@ const EditUser = () => {
               placeholder="John Doe"
               className="w-full max-w-sm"
               fontSize="lg"
-              focusBorderColor={useColorModeValue("green.300", "green.500")}
+              focusBorderColor={borderFocusColor}
             />
             <FormErrorMessage>{formError.name}</FormErrorMessage>
             <span className="my-3" />
@@ -235,7 +240,7 @@ const EditUser = () => {
                 placeholder="codechef_handle"
                 value={codechefHandle}
                 onChange={handleCodechefHandleChange}
-                focusBorderColor={useColorModeValue("green.300", "green.500")}
+                focusBorderColor={borderFocusColor}
               />
             </Box>
             <FormErrorMessage>{formError.codechefHandle}</FormErrorMessage>
@@ -256,7 +261,7 @@ const EditUser = () => {
                 placeholder="codeforces_handle"
                 value={codeforcesHandle}
                 onChange={handleCodeforcesHandleChange}
-                focusBorderColor={useColorModeValue("green.300", "green.500")}
+                focusBorderColor={borderFocusColor}
               />
             </Box>
             <FormErrorMessage>{formError.codeforcesHandle}</FormErrorMessage>
@@ -264,7 +269,7 @@ const EditUser = () => {
             <Button
               className="w-full max-w-sm p-2"
               height="14"
-              bgColor={useColorModeValue("green.300", "green.500")}
+              bgColor={borderFocusColor}
               type="submit"
             >
               <Text fontWeight="extrabold" fontSize="xl">
