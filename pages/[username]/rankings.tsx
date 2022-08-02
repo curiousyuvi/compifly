@@ -115,7 +115,7 @@ const rankings: NextPage<{ userDocsWithRatings: UserDocWithRating[] }> = ({
     .sort((a, b) => b.rating - a.rating);
   return (
     <Layout>
-      <div className="w-full h-full flex flex-col items-center">
+      <div className="w-full h-full flex flex-col items-center p-4 py-24">
         <Heading>Rankings</Heading>
         <span className="my-4" />
         <Tabs

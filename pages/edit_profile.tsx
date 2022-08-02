@@ -175,7 +175,7 @@ const EditUser = () => {
 
   return (
     <Layout>
-      <div className="w-full h-full flex flex-col justify-center items-center p-4">
+      <div className="w-full h-full flex flex-col justify-center items-center p-4 py-24">
         <FormControl isInvalid={isFormError}>
           <form
             onSubmit={handleEditUserFormSubmit}

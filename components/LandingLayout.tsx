@@ -3,12 +3,12 @@ import Footer from "./Footer";
 import Header from "./Header";
 import MobileNavbar from "./MobileNavbar";
 
-const Layout = ({ children }: { children: ReactNode }) => {
+const LandingLayout = ({ children }: { children: ReactNode }) => {
   return (
     <>
       <Header />
       <div className="w-[calc(100%)] min-h-screen flex justify-center">
-        <div className="w-full h-full max-w-6xl flex justify-center items-center p-2">
+        <div className="w-full h-full flex justify-center items-center">
           {children}
         </div>
       </div>
@@ -18,4 +18,4 @@ const Layout = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export default Layout;
+export default LandingLayout;

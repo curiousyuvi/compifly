@@ -6,7 +6,7 @@ import Layout from "../components/Layout";
 const friends = () => {
   return (
     <Layout>
-      <div className="w-full h-full flex flex-col items-center">
+      <div className="w-full h-full flex flex-col items-center p-4 py-24">
         <Heading>Friends</Heading>
         <span className="my-4" />
         <FriendsList />

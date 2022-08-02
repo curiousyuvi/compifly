@@ -80,16 +80,17 @@ const DesktopHeader = () => {
           >
             <InputGroup className="w-full flex items-center justify-center">
               <InputLeftElement pointerEvents="none" height="full">
-                <FaSearch className="text-lg" />
+                <FaSearch className="text-lg opacity-50" />
               </InputLeftElement>
               <Input
                 id="search"
                 value={query}
                 onChange={handleQueryChange}
+                className="placeholder:text-white/60"
                 placeholder="Search a name or handle"
                 height="12"
                 fontSize="md"
-                focusBorderColor={useColorModeValue("green.300", "green.500")}
+                focusBorderColor={useColorModeValue("gray.500", "gray.500")}
                 size="md"
               />
             </InputGroup>
