@@ -3,7 +3,6 @@ import React, { createContext, ReactNode, useEffect, useState } from "react";
 import { auth, db } from "../firebase";
 import useDB from "../hooks/useDB";
 import { UserDoc } from "../interfaces/UserDoc";
-import LoadingLayout from "../components/LoadingLayout";
 import { collection, doc, onSnapshot } from "firebase/firestore";
 
 const userContext = createContext<UserDoc | null>(null);
@@ -54,7 +53,7 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
           unsubscribeFriendsColListener();
           unsubscribeUserDocListener();
         };
-      } else router.replace("/login");
+      }
     };
 
     auth.onAuthStateChanged(() => {

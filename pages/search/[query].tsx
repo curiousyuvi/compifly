@@ -58,7 +58,7 @@ const SearchResults = () => {
 
   return (
     <Layout>
-      <div className="w-full h-full flex flex-col items-center">
+      <div className="w-full h-full flex flex-col items-center p-4 py-24">
         <Heading>Search</Heading>
         <span className="my-4" />
         <form

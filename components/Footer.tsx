@@ -8,8 +8,6 @@ const Footer = () => {
       <a href="https://github.com/curiousyuvi/compifly">
         <FaGithub className="text-3xl text-white" />
       </a>
-      <span className="my-2" />
-      <h1 className="text-gray-100">{"Made with ❤️ and Next.js"}</h1>
     </footer>
   );
 };

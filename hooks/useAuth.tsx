@@ -130,7 +130,7 @@ const useAuth = () => {
 
   const logout = () => {
     auth.signOut();
-    router.replace("/login");
+    router.replace("/");
   };
 
   return {

@@ -18,6 +18,7 @@ import React, { useEffect, useState } from "react";
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import AuthLayout from "../components/AuthLayout";
+import LoggedIn from "../components/LoggedIn";
 import { auth } from "../firebase";
 import useAuth from "../hooks/useAuth";
 
@@ -85,6 +86,12 @@ const Login: NextPage = () => {
     }
   };
 
+  const borderFocusColor = useColorModeValue("green.300", "green.500");
+  const redButtonColor = useColorModeValue("red.400", "red.600");
+  const bwButtonColor = useColorModeValue("black", "white");
+
+  if (auth.currentUser) return <LoggedIn />;
+
   return (
     <AuthLayout>
       <Box className="w-full h-full p-4 flex flex-col justify-center items-center">
@@ -113,7 +120,7 @@ const Login: NextPage = () => {
               className="w-full max-w-sm"
               height="14"
               fontSize="xl"
-              focusBorderColor={useColorModeValue("green.300", "green.500")}
+              focusBorderColor={borderFocusColor}
               size="lg"
             />
             <FormErrorMessage>{formError.email}</FormErrorMessage>
@@ -127,7 +134,7 @@ const Login: NextPage = () => {
               className="w-full max-w-sm"
               height="14"
               fontSize="xl"
-              focusBorderColor={useColorModeValue("green.300", "green.500")}
+              focusBorderColor={borderFocusColor}
               size="lg"
             />
             <FormErrorMessage>{formError.password}</FormErrorMessage>
@@ -135,7 +142,7 @@ const Login: NextPage = () => {
             <Button
               className="w-full max-w-sm p-2"
               height="14"
-              bgColor={useColorModeValue("green.300", "green.500")}
+              bgColor={borderFocusColor}
               type="submit"
             >
               <Text fontWeight="extrabold" fontSize="xl">
@@ -161,14 +168,14 @@ const Login: NextPage = () => {
           className="w-full max-w-sm"
           height="14"
           variant="outline"
-          borderColor={useColorModeValue("red.400", "red.600")}
+          borderColor={redButtonColor}
           onClick={handleGoogleAuthClick}
         >
           <Text
             fontWeight="extrabold"
             fontSize="xl"
             className="flex items-center"
-            color={useColorModeValue("red.400", "red.600")}
+            color={redButtonColor}
           >
             <FcGoogle className="text-2xl" />
             <span className="mx-2" />
@@ -180,8 +187,8 @@ const Login: NextPage = () => {
           className="w-full max-w-sm"
           height="14"
           variant="outline"
-          borderColor={useColorModeValue("black", "white")}
-          color={useColorModeValue("black", "white")}
+          borderColor={bwButtonColor}
+          color={bwButtonColor}
           onClick={handleGithubAuthClick}
         >
           <Text
