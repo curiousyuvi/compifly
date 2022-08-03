@@ -33,14 +33,8 @@ const useDB = () => {
         return false;
       }
     } catch (error: any | FirebaseError) {
-      toast({
-        title: "Database Error",
-        description: error.message,
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-        variant: "solid",
-      });
+      console.error(error);
+
       return false;
     }
   };
@@ -51,14 +45,7 @@ const useDB = () => {
 
       await setDoc(userDocRef, userDoc);
     } catch (error: any | FirebaseError) {
-      toast({
-        title: "Database Error",
-        description: error.message,
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-        variant: "solid",
-      });
+      console.error(error);
     }
   };
 
@@ -82,14 +69,7 @@ const useDB = () => {
         variant: "solid",
       });
     } catch (error: any | FirebaseError) {
-      toast({
-        title: "Database Error",
-        description: error.message,
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-        variant: "solid",
-      });
+      console.error(error);
     }
   };
 
@@ -114,14 +94,8 @@ const useDB = () => {
 
       return userDoc;
     } catch (error: any | FirebaseError) {
-      toast({
-        title: "Database Error",
-        description: error.message,
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-        variant: "solid",
-      });
+      console.error(error);
+
       return null;
     }
   };
@@ -165,14 +139,7 @@ const useDB = () => {
         });
       }
     } catch (error: any | FirebaseError) {
-      toast({
-        title: "Database Error",
-        description: error.message,
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-        variant: "solid",
-      });
+      console.error(error);
     }
   };
 
@@ -191,14 +158,7 @@ const useDB = () => {
         });
       }
     } catch (error: any | FirebaseError) {
-      toast({
-        title: "Database Error",
-        description: error.message,
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-        variant: "solid",
-      });
+      console.error(error);
     }
   };
 
@@ -253,14 +213,7 @@ const useDB = () => {
         return uniqueDocs;
       } else return [];
     } catch (error: any | FirebaseError) {
-      toast({
-        title: "Database Error",
-        description: error.message,
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-        variant: "solid",
-      });
+      console.error(error);
 
       return [];
     }

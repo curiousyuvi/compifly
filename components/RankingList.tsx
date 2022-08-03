@@ -22,6 +22,8 @@ const RankingList = ({
                 rating={userDocsWithRating[1].rating}
               />
 
+              <span className="mx-6" />
+
               <RankingListItem.Rank23
                 rank={3}
                 photoURL={userDocsWithRating[2].userDoc.photoURL}

@@ -17,7 +17,9 @@ const Rank1 = ({
   return (
     <Link href={`/${username}`} className="cursor-pointer">
       <div className="flex flex-col items-center">
-        <Text>1</Text>
+        <Text>
+          <span className="text-xs">#</span>1
+        </Text>
         <span className="my-1" />
         <Player
           autoplay={true}
@@ -29,7 +31,7 @@ const Rank1 = ({
           }}
         />
         <span className="my-2" />
-        <div className="sm:h-44 sm:w-44 h-36 w-36 border-4 border-green-500 rounded-full drop-shadow-2xl">
+        <div className="lg:h-48 lg:w-48 md:h-44 md:w-44 sm:h-36 sm:w-36 h-32 w-32 border-4 border-green-500 rounded-full drop-shadow-2xl">
           <Avatar src={photoURL} size="full" />
         </div>
         <span className="my-1" />
@@ -59,9 +61,12 @@ const Rank23 = ({
   return (
     <Link href={`/${username}`} className="cursor-pointer">
       <div className="flex flex-col items-center">
-        <Text>{rank}</Text>
+        <Text>
+          <span className="text-xs">#</span>
+          {rank}
+        </Text>
         <span className="my-2" />
-        <div className="sm:h-40 sm:w-40 h-32 w-32 border-4 border-green-500 rounded-full drop-shadow-[20px_0_0_rgb(20, 184, 166,0.25)]">
+        <div className="lg:h-44 lg:w-44 md:h-40 md:w-40 sm:h-32 sm:w-32 h-28 w-28 border-4 border-green-500 rounded-full drop-shadow-[20px_0_0_rgb(20, 184, 166,0.25)]">
           <Avatar src={photoURL} size="full" />
         </div>
         <span className="my-1" />

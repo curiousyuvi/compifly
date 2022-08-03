@@ -24,14 +24,7 @@ const useAuth = () => {
       const result = await signInWithPopup(auth, provider);
       if (result.user) router.replace("/");
     } catch (error: any) {
-      toast({
-        title: "Failed to authenticate",
-        description: error.message,
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-        variant: "solid",
-      });
+      console.error(error);
     }
   };
 
@@ -43,14 +36,7 @@ const useAuth = () => {
       const result = await signInWithPopup(auth, provider);
       if (result.user) router.replace("/");
     } catch (error: any) {
-      toast({
-        title: "Failed to authenticate",
-        description: error.message,
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-        variant: "solid",
-      });
+      console.error(error);
     }
   };
 
@@ -59,14 +45,7 @@ const useAuth = () => {
       const result = await signInWithEmailAndPassword(auth, email, password);
       if (result.user) router.replace("/");
     } catch (error: any) {
-      toast({
-        title: "Failed to login",
-        description: error.message,
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-        variant: "solid",
-      });
+      console.error(error);
     }
   };
 
@@ -77,16 +56,9 @@ const useAuth = () => {
         email,
         password
       );
-      if (result.user) router.replace("/");
+      if (result.user) router.replace("/create_user");
     } catch (error: any | FirebaseError) {
-      toast({
-        title: "Failed to register",
-        description: error.message,
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-        variant: "solid",
-      });
+      console.error(error);
     }
   };
 
@@ -117,14 +89,7 @@ const useAuth = () => {
         });
       }
     } catch (error: any | FirebaseError) {
-      toast({
-        title: "Failed to update profile",
-        description: error.message,
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-        variant: "solid",
-      });
+      console.error(error);
     }
   };
 
