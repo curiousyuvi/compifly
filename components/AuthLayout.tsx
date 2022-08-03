@@ -4,8 +4,8 @@ import React, { ReactNode } from "react";
 
 const AuthLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="w-full h-full min-h-screen flex items-center overflow-y-auto">
-      <div className="w-full h-full">{children}</div>
+    <div className="w-full h-full min-h-screen flex items-center">
+      <div className="w-full h-screen overflow-y-auto">{children}</div>
       <div
         className={`hidden lg:flex w-full h-full min-h-screen text-gray-100 ${useColorModeValue(
           "bg-gradient-to-b from-green-500 to-green-400",

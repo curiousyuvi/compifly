@@ -12,14 +12,7 @@ const useStorage = () => {
       const imageURL = await getDownloadURL(imageRef);
       return imageURL;
     } catch (error: any | FirebaseError) {
-      toast({
-        title: "Failed to upload image",
-        description: error.message,
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-        variant: "solid",
-      });
+      console.error(error);
     }
   };
 

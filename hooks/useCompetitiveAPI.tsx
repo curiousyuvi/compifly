@@ -14,14 +14,8 @@ const useCompetitiveAPI = () => {
       if (response.data?.rating) return Promise.resolve(response.data.rating);
       else return null;
     } catch (error: any) {
-      toast({
-        title: "Failed to get codechef rating",
-        description: error,
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-        variant: "solid",
-      });
+      console.error(error);
+
       return null;
     }
   };
@@ -34,14 +28,8 @@ const useCompetitiveAPI = () => {
       if (response.data?.rating) return Promise.resolve(response.data.rating);
       else return null;
     } catch (error: any) {
-      toast({
-        title: "Failed to get codeforces rating",
-        description: error,
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-        variant: "solid",
-      });
+      console.error(error);
+
       return null;
     }
   };
