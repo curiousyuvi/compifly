@@ -3,6 +3,17 @@
 
 Compifly is an app that allows users to create a profile and showcase their **competitive ratings / titles / stars using badges**, users can see others profile and their **ratings on different cp websites**, they can add others as friends and see **rankings among their friends**.
 
+## Screenshots
+![Screenshot from 2022-08-03 04-17-09](https://user-images.githubusercontent.com/58589519/182632798-5cf2d354-ff20-4e95-a165-bcdffc5ae772.png)
+![Screenshot from 2022-08-03 04-18-17](https://user-images.githubusercontent.com/58589519/182632820-003ac992-3cb6-4d2b-88d5-0c421d433cd2.png)
+![Screenshot from 2022-08-03 04-22-50](https://user-images.githubusercontent.com/58589519/182632828-50570ebd-2fe6-4add-82e5-3fdbf7b1b9a3.png)
+![Screenshot from 2022-08-03 04-23-41](https://user-images.githubusercontent.com/58589519/182632833-6b2fa74c-0ce3-4235-8ac8-225a0d19ea4e.png)
+![Screenshot from 2022-08-03 19-51-21](https://user-images.githubusercontent.com/58589519/182632838-bca2d27f-6e5c-4088-867e-3c6b87271ab1.png)
+![Screenshot from 2022-08-03 19-57-00](https://user-images.githubusercontent.com/58589519/182633918-0fe8b314-8396-4446-91e8-b29a6b5becdc.png)
+![Screenshot from 2022-08-03 19-57-41](https://user-images.githubusercontent.com/58589519/182633925-4c1d168c-d244-46b7-98b7-9c3a01325fd6.png)
+![Screenshot from 2022-08-03 19-58-08](https://user-images.githubusercontent.com/58589519/182633931-ef821ca2-b8f9-4ab6-b3bb-aed9d5ebbb5f.png)
+
+
 ## Tech/Library/Framework/Tools/APIs
 #### Frontend
 - Made with [Next.js](https://nextjs.org/)
