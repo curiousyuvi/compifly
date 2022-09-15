@@ -31,12 +31,13 @@ const Home: NextPage = () => {
       </Head>
       <div className="w-full h-full flex flex-col items-center">
         {/* PITCH SECTION */}
-        <div className="w-full h-screen relative">
+        <div className="w-full relative">
+          <div className="h-[210vh] bg-violet-600 absolute z-[-1] skew-y-2 w-full -translate-y-[100vh]" />
+          <div className="h-[210vh] bg-pink-600 absolute z-[-3] skew-y-3 w-full -translate-y-[99vh]" />
+          <div className="h-[210vh] bg-teal-600 absolute z-[-4] skew-y-[3.5deg] w-full -translate-y-[98.5vh]" />
+
           <div
-            className={`w-full ${useColorModeValue(
-              "bg-violet-400",
-              "bg-violet-600"
-            )} flex justify-center md:justify-start text-center md:text-start items-center p-4 py-[12rem]`}
+            className={`w-full  h-screen flex justify-center md:justify-start text-center md:text-start items-center p-4 py-[12rem]`}
           >
             <div className="w-full lg:w-2/3 text-2xl md:text-3xl lg:text-4xl xl:text-5xl flex flex-col items-center">
               <Text className="leading-snug text-center" color="white">
@@ -75,87 +76,99 @@ const Home: NextPage = () => {
               <Image src="/logo-art.png" alt="" layout="fill" />
             </div>
           </div>
-          <div className="my-20" />
+        </div>
+        <div className="my-20" />
+        <div className="w-full min-h-screen flex flex-col justify-center px-4 md:px-28 py-2">
           <div className="w-full flex flex-col justify-center items-center">
-            <Text className="text-xl md:text-2xl lg:text-3xl xl:text-4xl">
+            <Text className="text-base md:text-lg lg:text-xl font-semibold">
               What can I do here?
             </Text>
-            <span className="my-4" />
-            <BiChevronDown
-              className="text-8xl animate-bounce"
-              onClick={handleBelowPitchClick}
-            />
           </div>
-        </div>
-        {/* PROFILE SECTION */}
-        <div ref={belowSectionRef} />
-        <div className="w-full max-w-6xl px-6 py-2">
-          <div className="my-36" />
-          <div className="w-full relative flex flex-col items-center">
-            <div className="w-full flex flex-col-reverse md:flex-row items-center p-8 bg-gradient-to-t md:bg-gradient-to-r from-pink-700 to-pink-400 rounded-2xl drop-shadow-xl">
+          <div className="my-10" />
+
+          <div className="flex flex-col md:flex-row">
+            {/* PROFILE SECTION */}
+            <div className="w-full flex flex-col items-center p-8">
+              <div
+                className="h-[16rem] w-[16rem]"
+                data-aos="fade-up"
+                data-aos-duration="800"
+              >
+                <Image src="/profile-intro.png" alt="" layout="fill" />
+              </div>
+              <span className="my-4" />
               <Text
-                className="leading-snug text-lg md:text-xl lg:text-2xl xl:text-3xl"
+                className="leading-snug text-lg md:text-xl lg:text-2xl font-semibold"
+                color="white"
+              >
+                {"Create Profile"}
+              </Text>
+              <span className="my-2" />
+              <Text
+                className="leading-snug text-base md:text-lg lg:text-xl opacity-80 text-center"
                 color="white"
               >
                 {
                   "Create your profile and showcase your competitive 🦾 prowess through badges."
                 }
               </Text>
-              <div className="h-[10rem] w-[3rem] md:h-[18rem] md:w-[30rem]" />
             </div>
-            <div
-              className="h-[18rem] w-[18rem] md:h-[24rem] md:w-[24rem] lg:h-[28rem] lg:w-[28rem] absolute top-[-6rem] md:top-[-5rem] md:right-[-2rem]"
-              data-aos="fade-up"
-              data-aos-duration="800"
-            >
-              <Image src="/profile-intro.png" alt="" layout="fill" />
-            </div>
-          </div>
-          {/* FRIEND SECTION */}
-          <div className="my-32" />
-          <div className="w-full relative flex flex-col items-center">
-            <div className="w-full flex flex-col-reverse md:flex-row items-center p-8 bg-gradient-to-t md:bg-gradient-to-r from-indigo-700 to-indigo-400 rounded-2xl drop-shadow-xl">
+            {/* FRIEND SECTION */}
+            <div className="my-6" />
+            <div className="w-full flex flex-col items-center p-8">
+              <div
+                className="h-[16rem] w-[16rem]"
+                data-aos="fade-up"
+                data-aos-duration="800"
+              >
+                <Image src="/friend-intro.png" alt="" layout="fill" />
+              </div>
+              <span className="my-4" />
               <Text
-                className="leading-snug text-lg md:text-xl lg:text-2xl xl:text-3xl"
+                className="leading-snug text-lg md:text-xl lg:text-2xl font-semibold"
+                color="white"
+              >
+                {"Add Friends"}
+              </Text>
+              <span className="my-2" />
+              <Text
+                className="leading-snug text-base md:text-lg lg:text-xl opacity-80 text-center"
                 color="white"
               >
                 {
                   "View others profile, see their ratings and title and add them as friends."
                 }
               </Text>
-              <div className="h-[10rem] w-[3rem] md:h-[18rem] md:w-[30rem]" />
             </div>
-            <div
-              className="h-[18rem] w-[18rem] md:h-[24rem] md:w-[24rem] lg:h-[28rem] lg:w-[28rem] absolute top-[-6rem] md:top-[-5rem] md:right-[-2rem]"
-              data-aos="fade-up"
-              data-aos-duration="800"
-            >
-              <Image src="/friend-intro.png" alt="" layout="fill" />
-            </div>
-          </div>
-          {/* RANKING SECTION */}
-          <div className="my-32" />
-          <div className="w-full relative flex flex-col items-center">
-            <div className="w-full flex flex-col-reverse md:flex-row items-center p-8 bg-gradient-to-t md:bg-gradient-to-r from-yellow-700 to-yellow-400 rounded-2xl drop-shadow-xl">
+            {/* RANKING SECTION */}
+            <div className="my-6" />
+            <div className="w-full flex flex-col items-center p-8">
+              <div
+                className="h-[16rem] w-[16rem]"
+                data-aos="fade-up"
+                data-aos-duration="800"
+              >
+                <Image src="/ranking-intro.png" alt="" layout="fill" />
+              </div>
+              <span className="my-4" />
               <Text
-                className="leading-snug text-lg md:text-xl lg:text-2xl xl:text-3xl"
+                className="leading-snug text-lg md:text-xl lg:text-2xl font-semibold"
+                color="white"
+              >
+                {"See Rankings"}
+              </Text>
+              <span className="my-2" />
+              <Text
+                className="leading-snug text-base md:text-lg lg:text-xl opacity-80 text-center"
                 color="white"
               >
                 {
                   "See ranking among your friends and show them who's the alpha."
                 }
               </Text>
-              <div className="h-[10rem] w-[3rem] md:h-[18rem] md:w-[30rem]" />
             </div>
-            <div
-              className="h-[18rem] w-[18rem] md:h-[24rem] md:w-[24rem] lg:h-[28rem] lg:w-[28rem] absolute top-[-6rem] md:top-[-5rem] md:right-[-2rem]"
-              data-aos="fade-up"
-              data-aos-duration="800"
-            >
-              <Image src="/ranking-intro.png" alt="" layout="fill" />
-            </div>
+            <div className="my-6" />
           </div>
-          <div className="my-32" />
         </div>
       </div>
     </LandingLayout>
