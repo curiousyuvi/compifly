@@ -10,6 +10,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { Player } from "@lottiefiles/react-lottie-player";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
@@ -38,6 +39,9 @@ const Search = () => {
 
   return (
     <Layout>
+      <Head>
+        <title>Search | Compifly</title>
+      </Head>
       <div className="w-full h-full flex flex-col items-center p-4 py-24">
         <Heading>Search</Heading>
         <span className="my-4" />

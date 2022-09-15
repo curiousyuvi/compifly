@@ -25,6 +25,7 @@ import { auth } from "../../firebase";
 import NotLoggedIn from "../../components/NotLoggedIn";
 import useUser from "../../hooks/useUser";
 import NotFound from "../../components/NotFound";
+import Head from "next/head";
 
 export const getStaticPaths = async () => {
   return {
@@ -127,6 +128,9 @@ const Rankings: NextPage<{
   if (userDoc?.username !== username) return <NotFound />;
   return (
     <Layout>
+      <Head>
+        <title>{username} | Rankings</title>
+      </Head>
       <div className="w-full h-full flex flex-col items-center p-4 py-24">
         <Heading>Rankings</Heading>
         <span className="my-4" />

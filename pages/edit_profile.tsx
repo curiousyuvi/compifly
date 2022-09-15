@@ -10,6 +10,7 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { FaImage } from "react-icons/fa";
@@ -180,6 +181,9 @@ const EditUser = () => {
 
   return (
     <Layout>
+      <Head>
+        <title>Edit Profile | Compifly</title>
+      </Head>
       <div className="w-full h-full flex flex-col justify-center items-center p-4 py-24">
         <FormControl isInvalid={isFormError}>
           <form

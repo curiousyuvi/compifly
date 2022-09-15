@@ -1,4 +1,5 @@
 import { Heading } from "@chakra-ui/react";
+import Head from "next/head";
 import React from "react";
 import FriendsList from "../components/FriendsList";
 import Layout from "../components/Layout";
@@ -10,6 +11,9 @@ const friends = () => {
   return (
     <Layout>
       <div className="w-full h-full flex flex-col items-center p-4 py-24">
+        <Head>
+          <title>Friends | Compifly</title>
+        </Head>
         <Heading>Friends</Heading>
         <span className="my-4" />
         <FriendsList />

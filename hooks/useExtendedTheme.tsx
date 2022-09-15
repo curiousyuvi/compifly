@@ -17,7 +17,6 @@ const Heading: ComponentStyleConfig = {
 };
 
 const extendedThemeConfig: ThemeConfig = {
-  useSystemColorMode: true,
   initialColorMode: "dark",
 };
 
