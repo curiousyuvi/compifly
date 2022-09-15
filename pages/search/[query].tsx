@@ -19,6 +19,7 @@ import FriendListItem from "../../components/FriendListItem";
 import useDB from "../../hooks/useDB";
 import { UserShortDoc } from "../../interfaces/UserShortDoc";
 import UserListItem from "../../components/UserListItem";
+import Head from "next/head";
 
 const SearchResults = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -58,6 +59,9 @@ const SearchResults = () => {
 
   return (
     <Layout>
+      <Head>
+        <title>Results for `{query}`</title>
+      </Head>
       <div className="w-full h-full flex flex-col items-center p-4 py-24">
         <Heading>Search</Heading>
         <span className="my-4" />

@@ -10,6 +10,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { validateCallback } from "@firebase/util";
+import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -113,6 +114,9 @@ const Register: NextPage = () => {
 
   return (
     <AuthLayout>
+      <Head>
+        <title>Register | Compifly</title>
+      </Head>
       <Box className="w-full h-full p-4 flex flex-col justify-center items-center">
         <Image
           src="/logo.svg"

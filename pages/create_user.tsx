@@ -10,6 +10,7 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { FaImage } from "react-icons/fa";
@@ -226,6 +227,9 @@ const CreateUser = () => {
 
   return (
     <AuthLayout>
+      <Head>
+        <title>Create Profile | Compifly</title>
+      </Head>
       <div className="w-full min-h-screen h-full flex flex-col justify-center items-center p-4">
         <FormControl isInvalid={isFormError}>
           <form

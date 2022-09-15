@@ -9,6 +9,7 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { GetStaticProps, NextPage } from "next/types";
 import React, { useEffect, useState } from "react";
@@ -59,6 +60,9 @@ const ForgotPassword: NextPage = () => {
 
   return (
     <AuthLayout>
+      <Head>
+        <title>Forgot Password | Compifly</title>
+      </Head>
       <Box className="w-full h-full p-4 flex flex-col justify-center items-center">
         <Heading>Forgot Password</Heading>
         <span className="my-2" />

@@ -4,10 +4,12 @@ import { FaGithub } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="hidden sm:flex w-full bg-green-500 flex-col justify-center items-center p-4">
+    <footer className="hidden sm:flex w-full flex-col justify-center items-center p-4 text-xs">
       <a href="https://github.com/curiousyuvi/compifly">
-        <FaGithub className="text-3xl text-white" />
+        <FaGithub className="text-lg text-white hover:scale-110 duration-100" />
       </a>
+      <span className="my-1" />
+      Copyright © 2022 Yuvraj Singh - All Rights Reserved.
     </footer>
   );
 };
