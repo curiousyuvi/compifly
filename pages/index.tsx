@@ -32,7 +32,11 @@ const Home: NextPage = () => {
       <div className="w-full h-full flex flex-col items-center">
         {/* PITCH SECTION */}
         <div className="w-full relative">
-          <div className="h-[210vh] bg-violet-600 absolute z-[-1] skew-y-2 w-full -translate-y-[100vh]" />
+          <div className="h-[210vh] bg-violet-600 absolute z-[-2] skew-y-2 w-full -translate-y-[100vh] overflow-hidden">
+            <div className="h-[200vh] w-[200vh] absolute border-[20rem] z-[-1] border-white/5 rounded-full bottom-0 p-[10rem] content-box">
+              <div className="h-full w-full border-[10rem] z-[-1] border-white/5 rounded-full bottom-0" />
+            </div>
+          </div>
           <div className="h-[210vh] bg-pink-600 absolute z-[-3] skew-y-3 w-full -translate-y-[99vh]" />
           <div className="h-[210vh] bg-teal-600 absolute z-[-4] skew-y-[3.5deg] w-full -translate-y-[98.5vh]" />
 
