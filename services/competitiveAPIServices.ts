@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const api_endpoint = "https://competitive-coding-api.herokuapp.com/api";
+const api_endpoint = "https://web-production-8c0c.up.railway.app/api";
 const axiosInstance = axios.create({ baseURL: api_endpoint });
 
 const getCodechefRating: (handle: string) => Promise<number | null> = async (
